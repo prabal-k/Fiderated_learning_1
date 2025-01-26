@@ -70,20 +70,28 @@ class FlowerClient(fl.client.NumPyClient):
         loss, accuracy = model.evaluate(x_test, y_test)  # Evaluate locally.
         return loss, len(x_test), {"accuracy": accuracy}
         
-## 2. Client Workflow
-
-During each round:
-
-a) get_parameters(): The client receives the global model weights from the server.
-
-b) fit(): It updates its local model with the global weights and trains it using its local dataset.
-
-c) evaluate(): After training, it evaluates the model using its own test data (if required by the server).
-
-## 3.Sending Updates
+## 2.Sending Updates
 
 The client sends:
 
 Updated model weights (from fit()).
 
 Evaluation metrics (from evaluate()).
+
+
+
+# High-Level Summary
+
+Server:
+
+Starts the process and coordinates communication.
+
+Aggregates client updates using FedAvg.
+
+Creates a new global model after each round.
+
+Clients:
+
+Train the model locally on their private data.
+
+Share only model updates (weights) with the server, ensuring data privacy.
