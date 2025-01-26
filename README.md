@@ -1,3 +1,6 @@
+![Image](https://github.com/user-attachments/assets/012056fb-79b5-436d-8dac-1fe22915f106)
+
+
 # Flow of the Project: Server Side (Using Federated Averaging)
 
 ## 1. Server Initialization
