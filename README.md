@@ -10,8 +10,12 @@ b. the number of rounds for training in the server configuration is set to 3 rou
 
 Code Example:
 
-fl.server.start_server(
+
+fl.server.start_server
+(
+
     server_address="localhost:8080",
+    
     config=fl.server.ServerConfig(num_rounds=3),
     strategy=fl.server.strategy.FedAvg()
 )
@@ -47,7 +51,9 @@ c) evaluate() → Evaluates the updated model on the client's test data.
 
 Key Code in Client:
 
+
 class FlowerClient(fl.client.NumPyClient):
+
     def get_parameters(self):
         return model.get_weights()  # Return the current weights of the model.
 
