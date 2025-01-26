@@ -76,4 +76,5 @@ c) evaluate(): After training, it evaluates the model using its own test data (i
 The client sends:
 
 Updated model weights (from fit()).
+
 Evaluation metrics (from evaluate()).
