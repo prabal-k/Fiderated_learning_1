@@ -5,7 +5,9 @@
 server starts using fl.server.start_server with the FedAvg strategy.
 
 a. The FedAvg strategy ensures that client updates (model parameters) are averaged to create the global model.
+
 b. the number of rounds for training in the server configuration is set to 3 rounds.
+
 Code Example:
 
 fl.server.start_server(
@@ -19,14 +21,16 @@ fl.server.start_server(
 For each round:
 
 a) The server sends the global model parameters to selected clients.
+
 b) It waits for client updates (weights after local training).
+
 c) It aggregates these updates using the Federated Averaging (FedAvg) strategy to create a new global model.
+
 Optionally, the server may evaluate the new global model using client-provided evaluation results.
 
 ### Key Points:
 
-The server does not need access to client data.
-It coordinates the process and ensures that updates flow seamlessly between clients and itself.
+The server does not need access to client data.It coordinates the process and ensures that updates flow seamlessly between clients and itself.
 
 
 # Flow of the Project: Client Side
@@ -36,7 +40,9 @@ It coordinates the process and ensures that updates flow seamlessly between clie
 Each client connects to the server and implements three key methods:
 
 a) get_parameters() → Fetches the global model weights from the server.
+
 b) fit() → Trains the model locally on the client's data.
+
 c) evaluate() → Evaluates the updated model on the client's test data.
 
 Key Code in Client:
@@ -56,13 +62,17 @@ class FlowerClient(fl.client.NumPyClient):
         return loss, len(x_test), {"accuracy": accuracy}
         
 ## 2. Client Workflow
+
 During each round:
 
 a) get_parameters(): The client receives the global model weights from the server.
+
 b) fit(): It updates its local model with the global weights and trains it using its local dataset.
+
 c) evaluate(): After training, it evaluates the model using its own test data (if required by the server).
 
 ## 3.Sending Updates
+
 The client sends:
 
 Updated model weights (from fit()).
