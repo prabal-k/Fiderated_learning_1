@@ -5,11 +5,14 @@ import sys
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 # AUxillary methods
 def getDist(y):
-    ax = sns.countplot(y)
-    ax.set(title="Count of data classes")
+    # ax = sns.countplot(y)
+    # ax.set(title="Count of data classes")
+    pd.value_counts(y).plot(kind="bar")
+
     plt.show()
 
 def getData(dist, x, y):

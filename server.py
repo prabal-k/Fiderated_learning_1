@@ -22,6 +22,6 @@ strategy = SaveModelStrategy()
 fl.server.start_server(
         server_address = 'localhost:'+str(sys.argv[1]) , 
         config=fl.server.ServerConfig(num_rounds=3) ,
-        grpc_max_message_length = 1024*1024*1024,
+        grpc_max_message_length = 1024*1024*1024,   #Grpc sends commands and messages to clients and also this message length will carry the weights if the global model
         strategy = strategy
 )
