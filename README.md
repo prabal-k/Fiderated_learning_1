@@ -54,16 +54,18 @@ Key Code in Client:
 
 class FlowerClient(fl.client.NumPyClient):
 
-    def get_parameters(self):
-        return model.get_weights()      #The server uses this method to initialize the global model by collecting the parameters (weights) from clients and perform fed-averaging
+    def get_parameters(self):    #The server uses this method to initialize the global model by collecting the parameters (weights) from clients and perform fed-averaging
+        return model.get_weights()      
 
 
-    def fit(self, parameters, config):
+    def fit(self, parameters, config):   #    # Purpose OF FIT() method: To load the global model parameters, train the local model on the client’s dataset, and send the updated parameters to the server.
+
         model.set_weights(parameters)  # Load global model weights.
         model.fit(x_train, y_train, epochs=1, batch_size=32)  # Train locally.
         return model.get_weights(), len(x_train), {}  # Return updated weights.
 
-    def evaluate(self, parameters, config):
+    def evaluate(self, parameters, config):  #    #This method evaluates the model on the test data (x_test, y_test) and returns the loss and accuracy after each round(there                                                                                             are 3 rounds currently).
+
         model.set_weights(parameters)  # Load updated global model weights.
         loss, accuracy = model.evaluate(x_test, y_test)  # Evaluate locally.
         return loss, len(x_test), {"accuracy": accuracy}
