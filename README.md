@@ -58,13 +58,13 @@ class FlowerClient(fl.client.NumPyClient):
         return model.get_weights()      
 
 
-    def fit(self, parameters, config):   #    # Purpose OF FIT() method: To load the global model parameters, train the local model on the client’s dataset, and send the updated parameters to the server.
+    def fit(self, parameters, config):   #Purpose OF FIT() method: To load the global model parameters, train the local model on the client’s dataset, and send the updated parameters to the server.
 
         model.set_weights(parameters)  # Load global model weights.
         model.fit(x_train, y_train, epochs=1, batch_size=32)  # Train locally.
         return model.get_weights(), len(x_train), {}  # Return updated weights.
 
-    def evaluate(self, parameters, config):  #    #This method evaluates the model on the test data (x_test, y_test) and returns the loss and accuracy after each round(there                                                                                             are 3 rounds currently).
+    def evaluate(self, parameters, config):  # This method evaluates the model on the test data (x_test, y_test) and returns the loss and accuracy after each round(there                                                                                             are 3 rounds currently).
 
         model.set_weights(parameters)  # Load updated global model weights.
         loss, accuracy = model.evaluate(x_test, y_test)  # Evaluate locally.
