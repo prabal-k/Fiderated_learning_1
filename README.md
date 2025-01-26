@@ -43,9 +43,9 @@ The server does not need access to client data.It coordinates the process and en
 
 Each client connects to the server and implements three key methods:
 
-a) get_parameters() → Fetches the global model weights from the server.
+a) get_parameters() → is used to return the local model's current weights whenever the server requests them.
 
-b) fit() → Trains the model locally on the client's data.
+b) fit() → First load the global model weigths, Trains the model locally on the client's data and returns the trained local model weigths to server
 
 c) evaluate() → Evaluates the updated model on the client's test data.
 
