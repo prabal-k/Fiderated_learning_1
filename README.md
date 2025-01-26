@@ -55,7 +55,8 @@ Key Code in Client:
 class FlowerClient(fl.client.NumPyClient):
 
     def get_parameters(self):
-        return model.get_weights()  # Return the current weights of the model.
+        return model.get_weights()      #The server uses this method to initialize the global model by collecting the parameters (weights) from clients and perform fed-averaging
+
 
     def fit(self, parameters, config):
         model.set_weights(parameters)  # Load global model weights.
