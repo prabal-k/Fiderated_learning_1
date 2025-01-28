@@ -1,0 +1,17 @@
+*****************************How It Works
+1. Custom Aggregation:
+
+Instead of simply averaging the model updates from all clients (as in traditional FedAvg), this strategy assigns attention weights to each client based on their performance (e.g., accuracy).
+Clients with higher performance (accuracy) are given higher weights in the aggregation process, reflecting their contribution to the global model.
+
+2. Attention Mechanism:
+
+The attention weights are calculated using the softmax function over client accuracies, ensuring that the weights are positive and sum to 1.
+
+3.Aggregation Process:
+
+For each layer of the model, the server computes a weighted sum of the updates received from the clients using the attention weights.
+
+4. Metrics Aggregation:
+
+Custom metrics (e.g., average accuracy) are also aggregated across clients, and attention weights are included in the aggregated metrics.
